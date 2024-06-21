@@ -1,10 +1,41 @@
-<form asp-action="Index">
-<label>Họ tên</label>
-<input type="text" name="HoTen">
-<label>Địa chỉ ID</label>
-<input type="text" name="ID">
-<label>Ngày sinh</label>
-<input type="text" name="Ngaysinh">
-<input type="submit" value="Gửi dữ liệu">
-</form>
-<h1>@ViewBag.ifPer</h1>
+@model IEnumerable<DTTBaiThiLai.Models.DTT893>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ngaysinh)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ngaysinh)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.HoTen">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.HoTen">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.HoTen">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
